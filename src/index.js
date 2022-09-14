@@ -1,0 +1,12 @@
+const linkedList = require('./modules/linkedList')
+let myLinkedList = linkedList();
+myLinkedList.append('node 1')
+console.log(myLinkedList.toString())
+myLinkedList.prepend('node 0')
+console.log(myLinkedList.toString())
+myLinkedList.append('node 2')
+console.log(myLinkedList.toString())
+myLinkedList.append('node 3')
+console.log(myLinkedList.toString())
+console.log(myLinkedList.size())
+console.table(myLinkedList.at(3).getData())
