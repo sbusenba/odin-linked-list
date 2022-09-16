@@ -71,10 +71,33 @@ const linkedList = () => {
     }
     const pop =()=>{
         //removes last element from list
-        
+        let lastNode = tail()
+        // pasted recursive function from at(), errror when i use at()
+        const recAtIndex = (node,nodeIndex)=>{
+            if ((size()-2) == nodeIndex){
+                return node;
+            } else if (node.nextNode()){
+                return recAtIndex(node.nextNode(),nodeIndex+1)
+            }
+        }
+        let secondToLastNode =  recAtIndex(myHead,0)
+
+        secondToLastNode.setNextNode(null);
+        return lastNode;
     }
     const contains= (value)=>{
         //returns true if value is in list
+        const recContains = (node)=>{
+            if (node.getData() == value){
+                return true
+            } else if ((node.getData() != value) && (node.nextNode()== null)){
+                return  false;              
+            } else if ((node.getData() != value) && (node.nextNode()!= null)){
+                return recContains(node.nextNode())
+            }
+        }
+        return recContains(head());
+
     }
     const find = (value)=>{
         //returns index of node with value of value
