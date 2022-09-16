@@ -101,6 +101,16 @@ const linkedList = () => {
     }
     const find = (value)=>{
         //returns index of node with value of value
+        const recContains = (node,index)=>{
+            if (node.getData() == value){
+                return index;
+            } else if ((node.getData() != value) && (node.nextNode()== null)){
+                return  "-1";              
+            } else if ((node.getData() != value) && (node.nextNode()!= null)){
+                return recContains(node.nextNode(),index+1)
+            }
+        }
+        return recContains(head(),0);
     }
     const toString =()=>{
         // displays linked list as string
