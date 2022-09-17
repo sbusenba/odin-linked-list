@@ -59,7 +59,9 @@ const linkedList = () => {
 
     const at = (index)=>{
         //returns node at index
+        console.table(myHead)
         const recAtIndex = (node,nodeIndex)=>{
+            console.log(nodeIndex)
             if (index == nodeIndex){
                 return node;
             } else if (node.nextNode()){
@@ -163,6 +165,34 @@ const linkedList = () => {
     }
     const removeAt = (index) =>{
         //removes the node at Index
+        
+        if ((index > 0)&&(index<size()-1)){
+            const recAtIndex = (node,nodeIndex)=>{
+                if ((index-1) == nodeIndex){
+                    return node;
+                } else if (node.nextNode()){
+                    return recAtIndex(node.nextNode(),nodeIndex+1)
+                }
+            }
+            let previousNode =  recAtIndex(myHead,0)
+        
+            let nextNode = previousNode.nextNode().nextNode();
+        previousNode.setNextNode(nextNode)
+
+        } else if (index == 0){
+            myHead = myHead.nextNode()
+        } else if (index == size()-1){
+        // write condition for index = size
+        const recAtIndex = (node,nodeIndex)=>{
+            if ((index-1) == nodeIndex){
+                return node;
+            } else if (node.nextNode()){
+                return recAtIndex(node.nextNode(),nodeIndex+1)
+            }
+        }
+        let previousNode =  recAtIndex(myHead,0)
+        previousNode.setNextNode(null)
+        }
     }
     return {append,prepend,size,head,tail,
             at,pop,contains,find,toString, 
