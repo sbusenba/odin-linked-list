@@ -72,7 +72,12 @@ const linkedList = () => {
     const pop =()=>{
         //removes last element from list
         let lastNode = tail()
-        // pasted recursive function from at(), errror when i use at()
+        // pasted recursive function from at(), 
+        /*the following doesnt work:
+            let secondToLastNode = at(size()-2);
+
+        */
+            //the below code works
         const recAtIndex = (node,nodeIndex)=>{
             if ((size()-2) == nodeIndex){
                 return node;
@@ -81,7 +86,7 @@ const linkedList = () => {
             }
         }
         let secondToLastNode =  recAtIndex(myHead,0)
-
+            //to here
         secondToLastNode.setNextNode(null);
         return lastNode;
     }
@@ -130,6 +135,31 @@ const linkedList = () => {
     //extra credit:
     const insertAt = (value,index)=>{
         //insert new node with value of value at index
+        let newNode = node()
+        newNode.setData(value)
+        if (index>0){
+            const recAtIndex = (node,nodeIndex)=>{
+                if ((index-1) == nodeIndex){
+                    return node;
+                } else if (node.nextNode()){
+                    return recAtIndex(node.nextNode(),nodeIndex+1)
+                }
+            }
+            let previousNode =  recAtIndex(myHead,0)
+            console.log(previousNode.getData())
+            let nextNode = previousNode.nextNode()
+            
+            newNode.setNextNode(nextNode)
+            previousNode.setNextNode(newNode)
+        } else{
+            newNode.setNextNode(myHead)
+            myHead = newNode
+        }
+        
+
+
+
+
     }
     const removeAt = (index) =>{
         //removes the node at Index
