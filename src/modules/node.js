@@ -1,22 +1,22 @@
-let node =()=> {
-    let myData = null;
-    let myNextNode = null;
-    const setData = (data)=>{
-        myData = data;
+class node{
+    constructor(){
+    this.myData = null;
+    this.myNextNode = null;
+    }
+    get data(){
+        return this.myData;
     }
     
-    const getData=()=> {
+    set data(data){
 
-        return myData;
+        this.myData = data;
     }
-    const setNextNode = (newNextNode)=>
-    {
-        myNextNode = newNextNode;        
+    get nextNode(){
+        return this.myNextNode;        
     }
-    const nextNode = ()=>{
-        return myNextNode;
+    set nextNode(nextNode){
+        this.myNextNode = nextNode;
     }
-    return {myData,myNextNode,getData,setData,setNextNode,nextNode};
-  }
+}
 
 module.exports = node;
